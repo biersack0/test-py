@@ -1,9 +1,21 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import os
 import uvicorn
 from pydantic import BaseModel
 
 app = FastAPI()
+
+# Permitir CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # o tu dominio específico
+    allow_credentials=True,
+    allow_methods=["*"],  # GET, POST, OPTIONS, etc
+    allow_headers=["*"],
+)
+
+
 
 @app.get("/")
 def root():
